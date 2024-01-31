@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/COVID-Tracker-React/static/css/main.dd26f281.css",
+    "main.js": "/COVID-Tracker-React/static/js/main.88c21067.js",
+    "static/media/virus.png": "/COVID-Tracker-React/static/media/virus.8ac5e820aa2c2b2e62a2.png",
+    "index.html": "/COVID-Tracker-React/index.html",
+    "main.dd26f281.css.map": "/COVID-Tracker-React/static/css/main.dd26f281.css.map",
+    "main.88c21067.js.map": "/COVID-Tracker-React/static/js/main.88c21067.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dd26f281.css",
+    "static/js/main.88c21067.js"
+  ]
+}
