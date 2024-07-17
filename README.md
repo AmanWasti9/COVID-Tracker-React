@@ -27,7 +27,7 @@ git clone https://github.com/AmanWasti9/Covid19Tracker-React.git
 2. Navigate to the project directory.
 
 ```bash
-cd expense-tracker
+cd covid19-tracker
 ```
 
 3. Install the dependencies using npm or yarn.

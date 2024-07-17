@@ -1,33 +1,45 @@
-import { Container, Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import virus from "./virus.png";
+import { Container, Grid } from "@mui/material";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, PointElement, LineElement } from 'chart.js';
+import { Pie, Line } from 'react-chartjs-2';
 import axios from "axios";
+import virus from "./virus.png";
 
+// Register the elements with Chart.js
+ChartJS.register(
+  ArcElement,
+  Tooltip,
+  Legend,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement
+);
 
 export default function WorldWide() {
-    const [covidData, setCovidData] = useState([]);
-  
-    useEffect(() => {
-      async function fetchCovidData() {
-        const options = {
-          method: "GET",
-          url: "https://covid-19-statistics.p.rapidapi.com/reports",
-          headers: {
-            "X-RapidAPI-Key": "45a4e7d8e6msh8baaf3821825b91p109847jsne05debaabdbd",
-            "X-RapidAPI-Host": "covid-19-statistics.p.rapidapi.com",
-          },
-        };
-  
-        try {
-          const response = await axios.request(options);
-          setCovidData(response.data.data);
-        } catch (error) {
-          console.error(error);
-        }
+  const [covidData, setCovidData] = useState([]);
+
+  useEffect(() => {
+    async function fetchCovidData() {
+      const options = {
+        method: "GET",
+        url: "https://covid-19-statistics.p.rapidapi.com/reports",
+        headers: {
+          "X-RapidAPI-Key": "45a4e7d8e6msh8baaf3821825b91p109847jsne05debaabdbd",
+          "X-RapidAPI-Host": "covid-19-statistics.p.rapidapi.com",
+        },
+      };
+
+      try {
+        const response = await axios.request(options);
+        setCovidData(response.data.data);
+      } catch (error) {
+        console.error(error);
       }
-  
-      fetchCovidData();
-    }, []);
+    }
+
+    fetchCovidData();
+  }, []);
 
   // Calculate total deaths, active cases, and confirmed cases
   const totalDeaths = covidData.reduce((total, country) => total + country.deaths, 0);
@@ -35,8 +47,6 @@ export default function WorldWide() {
   const totalConfirmedCases = covidData.reduce((total, country) => total + country.confirmed, 0);
   const totalRecoveredCases = covidData.reduce((total, country) => total + (country.active - country.deaths), 0);
   const totalFatalityRate = ((totalDeaths / totalConfirmedCases) * 100).toFixed(7);
-
-
 
   return (
     <div className="main-world-wide-data">
